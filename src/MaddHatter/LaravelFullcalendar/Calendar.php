@@ -50,6 +50,13 @@ class Calendar
      */
     protected $callbacks = [];
 
+    public static function quickRandom($length = 16)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+    }
+
     /**
      * @param Factory         $view
      * @param EventCollection $eventCollection
@@ -126,7 +133,7 @@ class Calendar
             return $this->id;
         }
 
-        $this->id = str_random(8);
+        $this->id = self::quickRandom(8);
 
         return $this->id;
     }
